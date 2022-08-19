@@ -1,0 +1,31 @@
+{
+  "name": "process-engine",
+  "version": "0.0.1",
+  "description": "Automate things you do everyday.",
+  "main": "start.js",
+  "scripts": {
+    "test": "node start generate-json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adebai/process-engine.git"
+  },
+  "keywords": [
+    "automate",
+    "process",
+    "auto",
+    "boilerplate",
+    "code",
+    "auto",
+    "boiler",
+    "plate",
+    "automated",
+    "process"
+  ],
+  "author": "Ayodeji Adebowale",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adebai/process-engine/issues"
+  },
+  "homepage": "https://github.com/adebai/process-engine#readme"
+}

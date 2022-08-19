@@ -19,4 +19,8 @@ cmd.command("run <source>")
     })
     .version("0.0.1");
 
-cmd.parse();
+    exports.cmd = cmd;
+    exports.processEngine = processEngine;
+    // call cmd.parse(); to start the command.
+    // npm run test will not work until then.
+    cmd.parse(); 
