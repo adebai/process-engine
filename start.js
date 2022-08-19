@@ -7,7 +7,6 @@ cmd.command("generate-json <source> [destination]")
     .description("Generates a compact JSON version of your input javascript file."+ 
     "The JSON file can be distributed easily since it is smaller in size")
     .action(function (source, destination) {
-        console.log(`Source is ${source} and description is ${description}`);
         let instance = new processEngine(GENERATESCHEMA, source, destination);
 
     })
