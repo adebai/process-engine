@@ -1,11 +1,13 @@
 ```javascript
 // This process-engine is designed to work this way:
-// Note that the code will be processed from top to bottom
-// Which means that you can install some package, then create 
-// some files, then run custom code before you add another package.
+// Your main intention is called a process deployment.
+// In that process deployment, there will be processes and steps.
 // You should split all what you want to do into processes and steps
 // Process for a major work that needs multiple actions to be completed,
 // and steps for the actions that comprises of a process.
+// Note that the code will be processed from top to bottom
+// Which means that you can install some package, then create 
+// some files, then run custom code before you add another package.
 // Check this example for your reference.
 exports.processDeploymentName = {
     // Name of the process you're deploying, for example, expressJS installation
