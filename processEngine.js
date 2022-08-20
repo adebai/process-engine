@@ -5,6 +5,7 @@ const { basename } = require('path');
 const printTitle = require('./console-formatter').printTitle;
 const printMsg = require('./console-formatter').printMsg;
 const colorette =  require("colorette");
+const { exit } = require('process');
 fs = require('fs');
 
 // STATUSES
@@ -93,7 +94,7 @@ exports.processEngine = class processEngine {
      * @param object definition
      */
     installPackage(definition) {
-        const processEngineCommand = this.defs.processList[this.defs.processMap[definition.processName]].params.packageprocessEngineCommand;
+        let processEngineCommand = this.defs.processList[this.defs.processMap[definition.processName]].params.packageInstallerCommand;
         let exe = "" + processEngineCommand + " " + definition.actions.package +
             (definition.actions.version.length > 0 ? "@" + definition.actions.version : "") +
             " " + definition.actions.installArg;
