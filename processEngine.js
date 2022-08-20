@@ -105,6 +105,8 @@ exports.processEngine = class processEngine {
      * @param object definition
      */
     installFile(definition) {
+        this.currrentState = definition;
+        this.log("", true);
         fs.writeFileSync(definition.actions.fileName,
             (definition.actions.fileContent.length > 0
                 ? definition.actions.fileContent :
@@ -119,6 +121,8 @@ exports.processEngine = class processEngine {
      * @param object definition
      */
     installFolder(definition) {
+        this.currrentState = definition;
+        this.log("", true);
         if(definition.actions.folderContentPath.length > 1){
             let stat = this.copyFolderRecursiveSync(definition.actions.folderContentPath, definition.actions.folderName);
             this.log("Copied " + stat.fileCount + " files and " + stat.dirCount + " folders");
@@ -138,6 +142,8 @@ exports.processEngine = class processEngine {
      * @param object definition
      */
     custom(definition) {
+        this.currrentState = definition;
+        this.log("", true);
         global.PROCESS_PATH = definition.actions.processPath;
         if(definition.actions.isNodeCommand === true){
             let tmp = {};
@@ -261,9 +267,9 @@ exports.processEngine = class processEngine {
     log(data, printFriendlyName, fromTime) {
         let extended = !this.logger.toString().includes('[object') || !this.logger.toString().includes('function') && this.logger.length > 1 ? true : false;
         if (printFriendlyName === true) {
-            if(this.logger.toString().includes('[object') || this.logger.toString().includes('function')) this.logger(printTitle(colorette.bgWhite(colorette.green("Now " + this.currrentState.actions.friendlyName || "", this.currentProcess || "", this.currrentState || ""))));
-            else if(extended === true) global[this.logger[0]][this.logger[1]](printTitle(colorette.bgWhite(colorette.green("Now " + this.currrentState.actions.friendlyName || ""))));
-            else global[this.logger[0]](printTitle(colorette.bgWhite(colorette.green("Now " + this.currrentState.actions.friendlyName || "", this.currentProcess || "", this.currrentState || ""))));
+            if(this.logger.toString().includes('[object') || this.logger.toString().includes('function')) this.logger(printTitle(colorette.bgWhite(colorette.green(" " + this.currrentState.actions.friendlyName || "", this.currentProcess || "", this.currrentState || ""))));
+            else if(extended === true) global[this.logger[0]][this.logger[1]](printTitle(colorette.bgWhite(colorette.green(" " + this.currrentState.actions.friendlyName || ""))));
+            else global[this.logger[0]](printTitle(colorette.bgWhite(colorette.green(" " + this.currrentState.actions.friendlyName || "", this.currentProcess || "", this.currrentState || ""))));
         }
         if(fromTime === true) data = printMsg(colorette.bgMagenta(colorette.white(data)), 0);
         else data = printMsg(colorette.bgWhite(colorette.blue(data)), 0);
