@@ -27,5 +27,11 @@
   "bugs": {
     "url": "https://github.com/adebai/process-engine/issues"
   },
-  "homepage": "https://github.com/adebai/process-engine#readme"
+  "homepage": "https://github.com/adebai/process-engine#readme",
+  "devDependencies": {
+    "colorette": "^2.0.19",
+    "commander": "^9.4.0",
+    "console-formatter": "^1.0.3",
+    "shelljs": "^0.8.5"
+  }
 }
