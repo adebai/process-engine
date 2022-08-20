@@ -38,7 +38,12 @@ For executing your intention
 ```javascript
 node start run  <source> 
 ```
-Where source is path/to/file that contains your intention definition
+Where source is path/to/file that contains your intention definition.
+
+For testing with the `processes.js` included in the project
+```javascript
+node start run  ./processes
+```
 
 ## How to use
 Your main intention (or goal you want to achieve) is called a process deployment. This will also be what you'll export.
