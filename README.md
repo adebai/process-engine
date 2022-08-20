@@ -19,6 +19,27 @@ npm install
 ```
 at the root folder of the project, wait for it to finish, then you're ready to go.
 
+## How to run
+NOTE: you need to define your intention (check below) before you run.
+Once you're in the root folder of the project, run:
+
+For help 
+```javascript
+node start -h
+```
+
+For generating a compact json version
+```javascript
+node start generate-json  <source> [destination]
+```
+Where source is path/to/file that contains your intention definition and destination is the name of the file you want to save the generated json to.
+
+For executing your intention
+```javascript
+node start run  <source> 
+```
+Where source is path/to/file that contains your intention definition
+
 ## How to use
 Your main intention (or goal you want to achieve) is called a process deployment. This will also be what you'll export.
 Although, the name is not important in running your process, it is important so that you can understand what the intention
