@@ -1,15 +1,40 @@
-[p]Welcome[/p]
+# Process Engine (alpha)
+## Automate your daily routine in few easy steps
+Process engine makes it super easy to automate things that you do frequently, 
+while also giving you total freedom on what happens, when it happens and how it happens.
+It allows you to define the steps to achieve your goal. Even though it's written in JS, it will
+work absolutely well for processes in any language.
+
+## How it works
+Process engine uses a JSON object (not JSON file), to define what you want to do.
+A sample is already included in the project in the file `processes.js`.
+
+Please don't mind my quick-match-up readme, I'll improve it later.
+
+## How to install
+Mistakenly, I've already included the node_modules folder, so you don't need to 
+do anything at your end. Nevertheless, to install, run
 ```javascript
-// This process-engine is designed to work this way:
-// Your main intention is called a process deployment.
-// In that process deployment, there will be processes and steps.
-// You should split all what you want to do into processes and steps
-// Process for a major work that needs multiple actions to be completed,
-// and steps for the actions that comprises of a process.
-// Note that the code will be processed from top to bottom
-// Which means that you can install some package, then create 
-// some files, then run custom code before you add another package.
-// Check this example for your reference.
+npm install
+```
+at the root folder of the project, wait for it to finish, then you're ready to go.
+
+## How to use
+Your main intention (or goal you want to achieve) is called a process deployment. This will also be what you'll export.
+Although, the name is not important in running your process, it is important so that you can understand what the intention
+of your process deployment is (i.e, for your reference).
+
+#### Processes and steps
+In a process deployment, there will be processes and steps.
+You should split all what you want to do into processes and steps
+in such a way that processes are for major work that needs multiple actions to be completed,
+and steps will be the actions that needs to be completed for a process to be executed.
+Note that the code will be processed from top to bottom which means that you can install some package, then create 
+some files, then run custom code before you add another package.
+
+Check this example for your reference.
+
+```javascript
 exports.processDeploymentName = {
     // Name of the process you're deploying, for example, expressJS installation
     "ExpressJS installation" : {
@@ -106,3 +131,5 @@ exports.processDeploymentName = {
         // repeat the above for as many commands as you want to run before proceeding.
     }
 }
+```
+To contribute to this repo.. please contact me deji [at] thehits [dot] org
