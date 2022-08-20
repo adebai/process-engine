@@ -267,15 +267,15 @@ exports.processEngine = class processEngine {
     log(data, printFriendlyName, fromTime) {
         let extended = !this.logger.toString().includes('[object') || !this.logger.toString().includes('function') && this.logger.length > 1 ? true : false;
         if (printFriendlyName === true) {
-            if(this.logger.toString().includes('[object') || this.logger.toString().includes('function')) this.logger(printTitle(colorette.bgWhite(colorette.green(" " + this.currrentState.actions.friendlyName || "", this.currentProcess || "", this.currrentState || ""))));
-            else if(extended === true) global[this.logger[0]][this.logger[1]](printTitle(colorette.bgWhite(colorette.green(" " + this.currrentState.actions.friendlyName || ""))));
-            else global[this.logger[0]](printTitle(colorette.bgWhite(colorette.green(" " + this.currrentState.actions.friendlyName || "", this.currentProcess || "", this.currrentState || ""))));
+            if(this.logger.toString().includes('[object') || this.logger.toString().includes('function')) this.logger(...printTitle(colorette.bgWhite(colorette.green(" " + this.currrentState.actions.friendlyName || "", this.currentProcess || "", this.currrentState || ""))));
+            else if(extended === true) global[this.logger[0]][this.logger[1]](...printTitle(colorette.bgWhite(colorette.green(" " + this.currrentState.actions.friendlyName || ""))));
+            else global[this.logger[0]](...printTitle(colorette.bgWhite(colorette.green(" " + this.currrentState.actions.friendlyName || "", this.currentProcess || "", this.currrentState || ""))));
         }
         if(fromTime === true) data = printMsg(colorette.bgMagenta(colorette.white(data)), 0);
         else data = printMsg(colorette.bgWhite(colorette.blue(data)), 0);
-        if(this.logger.toString().includes('[object') || this.logger.toString().includes('function')) this.logger(data || "", this.currentProcess || "", this.currrentState || "");
-        else if(extended === true) global[this.logger[0]][this.logger[1]](data || "");
-        else global[this.logger[0]](data || "", this.currentProcess || "", this.currrentState || "");
+        if(this.logger.toString().includes('[object') || this.logger.toString().includes('function')) this.logger(...data, this.currentProcess || "", this.currrentState || "");
+        else if(extended === true) global[this.logger[0]][this.logger[1]](...data);
+        else global[this.logger[0]](...data, this.currentProcess || "", this.currrentState || "");
     }
     destructor() {
         const time = this.startTime;

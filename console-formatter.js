@@ -1,10 +1,11 @@
 function printTitle(msg) {
     
-    console.log('\x1b[4m%s\x1b[0m', '\n' + msg + '\n')
+    return ['\x1b[4m%s\x1b[0m', '\n' + msg + '\n']
 }
 
 
 function printMsg(msg, rc) {
+    if(msg.trim().length <1) return ['',''];
     // Where rc = response code
         // 0 = success
         // 1 = fail
@@ -21,16 +22,16 @@ function printMsg(msg, rc) {
 
     if (rc == 0) {
         // print GREEN
-        console.log(tab + dot + ' ' + msg + str + '\x1b[32m%s\x1b[0m', 'SUCCESS')
+        return [tab + dot + ' ' + msg + str + '\x1b[32m%s\x1b[0m', 'SUCCESS']
     } else if (rc == 1 ) {
         // print RED
-        console.log(tab + dot + ' ' + msg + str + '\x1b[31m%s\x1b[0m', 'FAIL')
+        return [tab + dot + ' ' + msg + str + '\x1b[31m%s\x1b[0m', 'FAIL']
     } else if (rc == 2) {
         // print YELLO
-        console.log(tab + dot + ' ' + msg + str + '\x1b[33m%s\x1b[0m', 'WARNING')
+        return [tab + dot + ' ' + msg + str + '\x1b[33m%s\x1b[0m', 'WARNING']
     } else if (rc == 3) {
         // BLUE
-        console.log(tab + dot + ' ' + msg + str + '\x1b[34m%s\x1b[0m', 'INFO')
+        return [tab + dot + ' ' + msg + str + '\x1b[34m%s\x1b[0m', 'INFO']
     }
 
 
