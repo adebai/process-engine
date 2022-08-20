@@ -16,7 +16,8 @@ function printMsg(msg, rc) {
     len = msg.length
     diff = total - len - 7
     tab = ' '.repeat(7)
-    str = '.'.repeat(diff  || 1)
+    if(diff < 1) diff = 0;
+    str = '.'.repeat(diff);
 
     if (rc == 0) {
         // print GREEN

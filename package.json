@@ -31,7 +31,6 @@
   "devDependencies": {
     "colorette": "^2.0.19",
     "commander": "^9.4.0",
-    "console-formatter": "^1.0.3",
     "shelljs": "^0.8.5"
   }
 }

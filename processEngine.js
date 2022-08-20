@@ -2,8 +2,8 @@ const shell = require('shelljs');
 const path = require("path");
 const { Buffer } =   require('buffer');
 const { basename } = require('path');
-const printTitle = require('console-formatter').printTitle;
-const printMsg = require('console-formatter').printMsg;
+const printTitle = require('./console-formatter').printTitle;
+const printMsg = require('./console-formatter').printMsg;
 const colorette =  require("colorette");
 fs = require('fs');
 
