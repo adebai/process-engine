@@ -5,6 +5,16 @@ while also giving you total freedom on what happens, when it happens and how it 
 It allows you to define the steps to achieve your goal. Even though it's written in JS, it will
 work absolutely well for processes in any language.
 
+## Why use Process engine?
+There are countless reasons
+1. Anyone with or without knowledge of shell scripts (or batch scripts) can use process engine.
+2. Unlike other options, you can pause, resume, run certain steps of your process. You can even rollback easily (in the future).
+3. As the community, contributes pre-defined intents, almost everything you want to achieve would have been written by the community, you'll just import it from it's repo or npm source.
+4. The GUI (coming soon) will make it damn too easy to use compared to shell scripts.
+5. Since you can import from a git repo or npm source, all your automation tools will be easier to manage and stored in the cloud.
+6.  Bugs in batch scripts are not so easy to handle, but with process engine handling everything for you, you will most likely never encounter any bug in your intent definition, and if there is, it will mostly be typos, and will be easily spotted.
+
+
 ## How it works
 Process engine uses a JSON object (not JSON file), to define what you want to do.
 A sample is already included in the project in the file `processes.js`.
@@ -157,4 +167,17 @@ exports.processDeploymentName = {
     }
 }
 ```
-To contribute to this repo.. please contact me deji [at] thehits [dot] org
+## To-Dos
+There are a lot of them.
+1. Fully support imports for generated intents.
+2. Handle erors more generously.
+3. Create the GUI (probably using react + electron or similar stuff).
+4. Create extensions for popular IDEs (VS, VS code, Android Studio, XCode, Atom, and Eclipse).
+5. Incorporate RobotJS as an optional import for providing better automation handling needs.
+6. Implement rollbacks.
+7. Implement autoload for custom-commands that has to be up and running for dynamic intents.
+8. Intent dependencies definition
+7. And Lots More...
+
+To contribute to this repo.. please contact me iamade.ayodeji [at] gmail [dot] com
+
