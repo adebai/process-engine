@@ -12,8 +12,7 @@ A sample is already included in the project in the file `processes.js`.
 Please don't mind my quick-match-up readme, I'll improve it later.
 
 ## How to install
-Mistakenly, I've already included the node_modules folder, so you don't need to 
-do anything at your end. Nevertheless, to install, run
+To install, run
 ```javascript
 npm install
 ```
