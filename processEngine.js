@@ -46,11 +46,12 @@ exports.processEngine = class processEngine {
             this.logger = this.currentProcess.params.logger.toString().includes('[object') 
             ? this.currentProcess.params.logger : 
             (this.currentProcess.params.logger || "console.log").split('.');
-            this.currrentState = this.defs.steps[0];
+            this.currentState = this.defs.steps[0];
             this.runSteps(this.defs.steps);
         }
         else if(mode == GENERATESCHEMA) {
             this.logger = console.log;
+            console.log(...printTitle(`Generating data to ${schemaFilePath}`));
             let buff = Buffer.from((new this.Definitions(processes, false)).toJSON);
             if(basename(schemaFilePath).includes('.hex')) buff = buff.toString('hex');
             else if(basename(schemaFilePath).includes('.b64')) buff = buff.toString('base64');
@@ -106,7 +107,7 @@ exports.processEngine = class processEngine {
      * @param object definition
      */
     installFile(definition) {
-        this.currrentState = definition;
+        this.currentState = definition;
         this.log("", true);
         fs.writeFileSync(definition.actions.fileName,
             (definition.actions.fileContent.length > 0
@@ -122,7 +123,7 @@ exports.processEngine = class processEngine {
      * @param object definition
      */
     installFolder(definition) {
-        this.currrentState = definition;
+        this.currentState = definition;
         this.log("", true);
         if(definition.actions.folderContentPath.length > 1){
             let stat = this.copyFolderRecursiveSync(definition.actions.folderContentPath, definition.actions.folderName);
@@ -143,7 +144,7 @@ exports.processEngine = class processEngine {
      * @param object definition
      */
     custom(definition) {
-        this.currrentState = definition;
+        this.currentState = definition;
         this.log("", true);
         global.PROCESS_PATH = definition.actions.processPath;
         if(definition.actions.isNodeCommand === true){
@@ -255,7 +256,7 @@ exports.processEngine = class processEngine {
         const time = Date.now() - start;
         const base = time > 1000 ? "s" : "ms";
         const value = time > 1000 ? Math.floor(time / 1000) : time;
-        let custom = customText.length < 1 ? `${ this.currrentState.processName } - ${this.currentStateName}` : customText; 
+        let custom = customText.length < 1 && this.currentState != undefined ? `${ this.currentState.processName } - ${this.currentStateName}` : customText || "Data Generation"; 
         this.log(`${custom} completed in ${value + base}`, false, true);
     }
     // log function needs refactoring..
@@ -268,15 +269,15 @@ exports.processEngine = class processEngine {
     log(data, printFriendlyName, fromTime) {
         let extended = !this.logger.toString().includes('[object') || !this.logger.toString().includes('function') && this.logger.length > 1 ? true : false;
         if (printFriendlyName === true) {
-            if(this.logger.toString().includes('[object') || this.logger.toString().includes('function')) this.logger(...printTitle(colorette.bgWhite(colorette.green(" " + this.currrentState.actions.friendlyName || "", this.currentProcess || "", this.currrentState || ""))));
-            else if(extended === true) global[this.logger[0]][this.logger[1]](...printTitle(colorette.bgWhite(colorette.green(" " + this.currrentState.actions.friendlyName || ""))));
-            else global[this.logger[0]](...printTitle(colorette.bgWhite(colorette.green(" " + this.currrentState.actions.friendlyName || "", this.currentProcess || "", this.currrentState || ""))));
+            if(this.logger.toString().includes('[object') || this.logger.toString().includes('function')) this.logger(...printTitle(colorette.bgWhite(colorette.green(" " + this.currentState.actions.friendlyName || "", this.currentProcess || "", this.currentState || ""))));
+            else if(extended === true) global[this.logger[0]][this.logger[1]](...printTitle(colorette.bgWhite(colorette.green(" " + this.currentState.actions.friendlyName || ""))));
+            else global[this.logger[0]](...printTitle(colorette.bgWhite(colorette.green(" " + this.currentState.actions.friendlyName || "", this.currentProcess || "", this.currentState || ""))));
         }
         if(fromTime === true) data = printMsg(colorette.bgMagenta(colorette.white(data)), 0);
         else data = printMsg(colorette.bgWhite(colorette.blue(data)), 0);
-        if(this.logger.toString().includes('[object') || this.logger.toString().includes('function')) this.logger(...data, this.currentProcess || "", this.currrentState || "");
+        if(this.logger.toString().includes('[object') || this.logger.toString().includes('function')) this.logger(...data, this.currentProcess || "", this.currentState || "");
         else if(extended === true) global[this.logger[0]][this.logger[1]](...data);
-        else global[this.logger[0]](...data, this.currentProcess || "", this.currrentState || "");
+        else global[this.logger[0]](...data, this.currentProcess || "", this.currentState || "");
     }
     destructor() {
         const time = this.startTime;

@@ -13,7 +13,6 @@ module.exports = class definitions {
     init (params, run) {
         if(run == null) run = false;
         if(run === false) {
-            console.log("Generating JSON schema...");
             this.toJSON = JSON.stringify(params);
             return this.toJSON;
         }
