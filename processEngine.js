@@ -16,7 +16,10 @@ ERROR = 4;
 RESUMING = 5;
 RUN = 6;
 GENERATESCHEMA = 7;
-
+PE_CONDITION = 1;
+PE_LOOP = 2;
+PE_EVENT = 3;
+PE_EXPRESSION = 4;
 
 /**
  * @description Main class that executes all processes and steps
@@ -99,7 +102,7 @@ exports.processEngine = class processEngine {
         let exe = "" + processEngineCommand + " " + definition.actions.package +
             (definition.actions.version.length > 0 ? "@" + definition.actions.version : "") +
             " " + definition.actions.installArg;
-        this.log(colorette.bgWhite(colorette.blue(exe)), true);
+        this.log((colorette.yellow(exe)), true);
         shell.exec(exe, { silent: true});
     }
     /**
@@ -274,7 +277,7 @@ exports.processEngine = class processEngine {
             else global[this.logger[0]](...printTitle(colorette.bgWhite(colorette.green(" " + this.currentState.actions.friendlyName || "", this.currentProcess || "", this.currentState || ""))));
         }
         if(fromTime === true) data = printMsg(colorette.bgMagenta(colorette.white(data)), 0);
-        else data = printMsg(colorette.bgWhite(colorette.blue(data)), 0);
+        else data = printMsg((colorette.yellow(data)), 0);
         if(this.logger.toString().includes('[object') || this.logger.toString().includes('function')) this.logger(...data, this.currentProcess || "", this.currentState || "");
         else if(extended === true) global[this.logger[0]][this.logger[1]](...data);
         else global[this.logger[0]](...data, this.currentProcess || "", this.currentState || "");

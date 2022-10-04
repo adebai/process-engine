@@ -8,13 +8,24 @@
 // Check this example for your reference.  
 exports.processDeploymentName = {
     // Name of the process you're deploying, for example, expressJS installation
+    "Check if Express is installed" : {
+        customCommandsDir : "custom-commmands or null", // Directory to load custom commands
+        packageInstallerCommand : "npm install ", // 
+        logger : "console.log", //you can create a custom function to handle your logs. Default is console.log.
+        type : PE_CONDITION,
+        "calculate" : {
+            command : "expression",
+            resultType : "const",
+            result : "res"
+        }
+    },
     "ExpressJS installation" : {
         customCommandsDir : "custom-commmands or null", // Directory to load custom commands
         packageInstallerCommand : "npm install ", // 
         logger : "console.log", //you can create a custom function to handle your logs. Default is console.log.
         //Package definition start
         "Install the package" : {
-            command : "installPackage", // Built-in command. 
+            command : "installPackage", // Built-in command.
                                         // There are only four built-in commands: installPackage, installFile, installFolder and custom
             package : "express", // name of package to install
             version : "", // version of the package
